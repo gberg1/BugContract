@@ -20,7 +20,9 @@ contract Donations {
     beneficiaries.push(_beneficiary);
   }
 
+  // Bug: Anyone can call the payout func should update the spec
   function payout() public {
+    // BugL add a check for beneficiaries length is greater than 0
     uint amountPerBeneficiary = address(this).balance / beneficiaries.length;
     require(amountPerBeneficiary > 0);
 
